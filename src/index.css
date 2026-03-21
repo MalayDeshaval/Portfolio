@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 4%;
+    --foreground: 160 100% 70%;
+
+    --card: 220 25% 8%;
+    --card-foreground: 160 60% 80%;
+
+    --popover: 220 25% 8%;
+    --popover-foreground: 160 60% 80%;
+
+    --primary: 160 100% 50%;
+    --primary-foreground: 220 20% 4%;
+
+    --secondary: 260 80% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 20% 12%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 260 80% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 160 40% 20%;
+    --input: 220 20% 15%;
+    --ring: 160 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom cyber tokens */
+    --neon-green: 160 100% 50%;
+    --neon-purple: 260 80% 60%;
+    --neon-blue: 210 100% 60%;
+    --cyber-dark: 220 25% 6%;
+    --cyber-darker: 220 20% 3%;
+    --glass-bg: 220 25% 8%;
+    --glass-border: 160 40% 20%;
+
+    --gradient-neon: linear-gradient(135deg, hsl(160 100% 50%), hsl(260 80% 60%));
+    --gradient-cyber: linear-gradient(135deg, hsl(220 25% 6%), hsl(220 25% 12%));
+    --shadow-neon-green: 0 0 20px hsl(160 100% 50% / 0.3), 0 0 40px hsl(160 100% 50% / 0.1);
+    --shadow-neon-purple: 0 0 20px hsl(260 80% 60% / 0.3), 0 0 40px hsl(260 80% 60% / 0.1);
+
+    --sidebar-background: 220 25% 6%;
+    --sidebar-foreground: 160 60% 80%;
+    --sidebar-primary: 160 100% 50%;
+    --sidebar-primary-foreground: 220 20% 4%;
+    --sidebar-accent: 260 80% 60%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 160 40% 20%;
+    --sidebar-ring: 160 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-lg;
+    box-shadow: 0 8px 32px hsl(220 25% 4% / 0.5), inset 0 1px 0 hsl(160 100% 50% / 0.05);
+  }
+
+  .neon-text {
+    color: hsl(var(--primary));
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.1);
+  }
+
+  .neon-text-purple {
+    color: hsl(var(--secondary));
+    text-shadow: 0 0 10px hsl(var(--secondary) / 0.5), 0 0 20px hsl(var(--secondary) / 0.3);
+  }
+
+  .neon-border {
+    border-color: hsl(var(--primary) / 0.4);
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.1), inset 0 0 10px hsl(var(--primary) / 0.05);
+  }
+
+  .neon-border-purple {
+    border-color: hsl(var(--secondary) / 0.4);
+    box-shadow: 0 0 10px hsl(var(--secondary) / 0.1), inset 0 0 10px hsl(var(--secondary) / 0.05);
+  }
+
+  .neon-glow-btn {
+    @apply relative overflow-hidden transition-all duration-300;
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.3);
+  }
+  .neon-glow-btn:hover {
+    box-shadow: 0 0 25px hsl(var(--primary) / 0.5), 0 0 50px hsl(var(--primary) / 0.2);
+    transform: translateY(-2px);
+  }
+
+  .neon-glow-btn-purple {
+    @apply relative overflow-hidden transition-all duration-300;
+    box-shadow: 0 0 15px hsl(var(--secondary) / 0.3);
+  }
+  .neon-glow-btn-purple:hover {
+    box-shadow: 0 0 25px hsl(var(--secondary) / 0.5), 0 0 50px hsl(var(--secondary) / 0.2);
+    transform: translateY(-2px);
+  }
+
+  .cyber-grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--primary) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-display font-bold neon-text mb-2;
+  }
+
+  .section-subtitle {
+    @apply text-muted-foreground font-body text-lg mb-12;
+  }
+
+  .terminal-text {
+    @apply font-mono text-primary;
+  }
+}
+
+/* Matrix rain canvas */
+.matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.07;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
