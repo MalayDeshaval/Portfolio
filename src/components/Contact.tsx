@@ -128,7 +128,7 @@ const Contact = () => {
           >
             {[
               { icon: Linkedin, label: "LinkedIn", href: "#", color: "primary" as const },
-              { icon: Github, label: "GitHub", href: "#", color: "secondary" as const },
+              { icon: Github, label: "GitHub", href: "https://github.com/MalayDeshaval", color: "secondary" as const },
               { icon: Mail, label: "Email", href: "mailto:contact@malaydeshaval.com", color: "primary" as const },
             ].map((link) => (
               <a
