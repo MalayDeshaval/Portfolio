@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Github, Globe, Lock, Brain, KeyRound, MailWarning } from "lucide-react";
+import { X, ExternalLink, Github, Globe, Lock, Brain, KeyRound, MailWarning, Activity } from "lucide-react";
 
 interface Project {
   title: string;
@@ -12,6 +12,14 @@ interface Project {
 }
 
 const projects: Project[] = [
+  {
+    title: "Real-Time-Network-Intrusion-Detection-System",
+    icon: Activity,
+    description: "A real-time network intrusion detection platform that monitors and analyzes network traffic for malicious activities.",
+    features: ["Real-time packet capture", "Threat detection & alerting", "Dashboard visualization", "Log management"],
+    tech: ["Python", "FastAPI", "React", "WebSockets"],
+    concepts: ["Network Security", "Intrusion Detection", "Packet Analysis"],
+  },
   {
     title: "Web Penetration Testing Website",
     icon: Globe,

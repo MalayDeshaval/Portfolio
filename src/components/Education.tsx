@@ -9,6 +9,12 @@ const Education = () => {
   const timeline = [
     {
       icon: GraduationCap,
+      title: "Diploma in CE engineering",
+      sub: "Diploma in Computer Engineering",
+      color: "secondary" as const,
+    },
+    {
+      icon: GraduationCap,
       title: "B.Tech in Computer Science Engineering",
       sub: "Focused on cybersecurity and network systems",
       color: "primary" as const,

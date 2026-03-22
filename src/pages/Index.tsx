@@ -10,6 +10,7 @@ import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
+import Chatbot from "@/components/Chatbot";
 
 const Index = () => {
   const [booted, setBooted] = useState(false);
@@ -33,6 +34,7 @@ const Index = () => {
             <Skills />
             <Contact />
           </main>
+          <Chatbot />
         </motion.div>
       )}
     </>
