@@ -1,7 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Send, Linkedin, Github, Mail, Loader2 } from "lucide-react";
-import emailjs from "emailjs-com";
 import { toast } from "sonner";
 
 const Contact = () => {
@@ -14,34 +13,29 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-
-    const SERVICE_ID = "service_kfoqwwb";
-    const TEMPLATE_ID = "template_z61i5qh";
-    const PUBLIC_KEY = "1sN7f_DiEA30qNmMF";
+    const formData = new FormData();
+    formData.append("access_key", "7956dae4-a14e-4b7f-9937-15ce8f152dd6");
+    formData.append("name", form.name);
+    formData.append("email", form.email);
+    formData.append("message", form.message);
+    formData.append("from_name", form.name); // Optional: for Web3Forms email formatting
 
     try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
 
-      const result = await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-          from_name: form.name,
-          user_name: form.name,     // Fallback for different templates
-          from_email: form.email,
-          user_email: form.email,   // Fallback for different templates
-          reply_to: form.email,
-          message: form.message,
-          to_name: "Malay Deshaval",
-        },
-        PUBLIC_KEY
-      );
+      const data = await response.json();
 
-      if (result.status === 200) {
+      if (data.success) {
         toast.success("Message sent successfully!");
         setForm({ name: "", email: "", message: "" });
+      } else {
+        toast.error(data.message || "Failed to send message. Please try again later.");
       }
     } catch (error) {
-      console.error("EmailJS Error:", error);
+      console.error("Web3Forms Error:", error);
       toast.error("Failed to send message. Please try again later.");
     } finally {
       setIsSubmitting(false);
@@ -70,7 +64,7 @@ const Contact = () => {
             <div>
               <label className="block font-display text-xs tracking-widest text-primary uppercase mb-1.5">Name</label>
               <input
-                name="from_name"
+                name="name"
                 type="text"
                 required
                 maxLength={100}
@@ -82,7 +76,7 @@ const Contact = () => {
             <div>
               <label className="block font-display text-xs tracking-widest text-primary uppercase mb-1.5">Email</label>
               <input
-                name="from_email"
+                name="email"
                 type="email"
                 required
                 maxLength={255}
@@ -127,7 +121,7 @@ const Contact = () => {
             className="flex flex-col gap-4"
           >
             {[
-              { icon: Linkedin, label: "LinkedIn", href: "#", color: "primary" as const },
+              { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/malay-deshaval-2b674835b/", color: "primary" as const },
               { icon: Github, label: "GitHub", href: "https://github.com/MalayDeshaval", color: "secondary" as const },
               { icon: Mail, label: "Email", href: "mailto:contact@malaydeshaval.com", color: "primary" as const },
             ].map((link) => (

@@ -169,6 +169,21 @@
   background: hsl(var(--primary) / 0.5);
 }
 
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.2);
+  border-radius: 2px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.4);
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;

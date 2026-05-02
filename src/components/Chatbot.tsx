@@ -9,18 +9,32 @@ interface Message {
 }
 
 const QA_KNOWLEDGE: Record<string, string> = {
-  "education": "I completed my Diploma in Computer Engineering and my B.Tech in Computer Science Engineering. I also have a Cisco Networking Certification.",
-  "project": "I've worked on the Real-Time Network Intrusion Detection System, an AI Web Penetration Testing platform, Password Cracking labs, and Phishing Detection systems.",
-  "nids": "The Real-Time-Network-Intrusion-Detection-System is an AI-powered platform I built using Python, FastAPI, React, and WebSockets to monitor and analyze network traffic for malicious activities.",
-  "contact": "You can reach out to me via the Contact section at the bottom, or send me an email directly. I'm always open to discussing cybersecurity and software development!",
-  "about": "I'm Malay Deshaval, a cybersecurity enthusiast and software developer focusing on network security, penetration testing, and AI applications.",
-  "who are you": "I am Malay Deshaval's AI assistant. I can help you navigate his portfolio and answer questions about his experience and projects!",
-  "hi": "Hello! I am Malay Deshaval's AI assistant. How can I help you today?",
-  "hello": "Hello! I am Malay Deshaval's AI assistant. How can I help you today?",
-  "skills": "My technical skills include Python, React, penetration testing tools, and network analysis tools. Check out the Skills section for more details!",
-  "cert": "I hold a Cisco Networking Certification and have extensive coursework in ethical hacking, cryptography, and secure development.",
-  "experience": "I have hands-on experience in building cybersecurity platforms like my Real-Time NIDS and Web Penetration Testing platforms.",
-  "default": "I'm still learning! Could you please ask specifically about my education, projects, skills, or contact info?"
+  "education": "Malay has a strong academic background: a Diploma in Computer Engineering, a B.Tech in Computer Science Engineering (focused on Cybersecurity), and a Cisco Networking Certification.",
+  "b.tech": "He completed his B.Tech in Computer Science Engineering with a focus on cybersecurity and network systems.",
+  "diploma": "He holds a Diploma in Computer Engineering (CE engineering).",
+  "cisco": "He is certified in Cisco Networking, covering cybersecurity training and networking fundamentals.",
+  "project": "Malay has developed several security projects, including a Real-Time NIDS, AI-powered Web Penetration Testing platforms, Password Cracking labs, and Phishing Detection systems. Which one would you like to know more about?",
+  "nids": "The 'Real-Time-Network-Intrusion-Detection-System' monitors network traffic for malicious activities using Python, FastAPI, React, and WebSockets. It features real-time packet capture and threat alerting.",
+  "web penetration": "He built two web penetration testing platforms: one using Python, Flask, and Nmap for vulnerability scanning, and an advanced AI-powered version using TensorFlow for automated security analysis.",
+  "ai penetration": "The AI Powered Web Penetration Testing project uses TensorFlow and Python to automatically detect security weaknesses and suggest remediation steps.",
+  "password": "His Password Cracking + Defense Lab demonstrates hashing algorithms, salt & pepper techniques, and simulations of dictionary and brute force attacks using Hashcat and John the Ripper.",
+  "phishing": "The URL & Email Phishing Detection system uses Machine Learning (Scikit-learn and NLP) to classify and detect malicious links and email content in real-time.",
+  "contact": "You can reach out to Malay through the Contact section, email him at contact@malaydeshaval.com, or connect on LinkedIn. Check the links on the left side of the contact form!",
+  "linkedin": "You can find Malay on LinkedIn at: https://www.linkedin.com/in/malay-deshaval-2b674835b/",
+  "github": "His GitHub profile is: https://github.com/MalayDeshaval. It contains all his cybersecurity research and tools.",
+  "about": "Malay Deshaval is a Cybersecurity Researcher and Software Developer specializing in penetration testing, AI security, and network defense.",
+  "experience": "He has extensive experience as a Cyber Security Researcher, building tools for vulnerability detection, phishing detection, and password security analysis.",
+  "skills": "Malay's skills include Python, React, FastAPI, TensorFlow, Scikit-learn, Nmap, OWASP ZAP, Metasploit, Wireshark, and Burp Suite. He's also proficient in Network Security and Ethical Hacking.",
+  "python": "Malay uses Python extensively for building security tools, machine learning models, and backend APIs (FastAPI/Flask).",
+  "react": "This entire portfolio is built with React! He also uses React for the dashboards of his security platforms.",
+  "who are you": "I am Malay Deshaval's AI assistant. I'm here to answer any questions about his skills, projects, or background!",
+  "hi": "Hello! I am Malay's AI assistant. Feel free to ask about his projects, skills, or how to contact him!",
+  "hello": "Hi there! How can I help you explore Malay's portfolio today?",
+  "cert": "Besides his degree, he holds a Cisco Networking Certification and has completed coursework in Ethical Hacking and Cryptography.",
+  "owner": "Malay Deshaval is the owner and developer of this portfolio.",
+  "creator": "This portfolio was created by Malay Deshaval.",
+  "developer": "Malay Deshaval built this entire cybersecurity portfolio and all the projects featured here.",
+  "default": "I'm not sure about that specifically. Try asking about his projects (like NIDS or Phishing Detection), skills, education, or how to contact him!"
 };
 
 export default function Chatbot() {
@@ -33,9 +47,18 @@ export default function Chatbot() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
+    const scrollToBottom = () => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollTo({
+          top: scrollRef.current.scrollHeight,
+          behavior: "smooth"
+        });
+      }
+    };
+    
+    // Use a small timeout to ensure DOM has updated
+    const timeoutId = setTimeout(scrollToBottom, 100);
+    return () => clearTimeout(timeoutId);
   }, [messages, isTyping]);
 
   const handleSend = () => {
@@ -75,9 +98,56 @@ export default function Chatbot() {
           >
             <button
               onClick={() => setIsOpen(true)}
-              className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-primary-foreground shadow-lg hover:shadow-[0_0_20px_hsl(var(--primary)/0.6)] hover:scale-105 transition-all duration-300"
+              className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-primary-foreground shadow-lg hover:shadow-[0_0_30px_hsl(var(--primary)/0.8)] hover:scale-110 transition-all duration-300 relative group overflow-hidden"
             >
-              <MessageSquare className="w-6 h-6" />
+              <div className="relative w-10 h-10 flex items-center justify-center">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full opacity-100">
+                  <path d="M12 8V4H8" />
+                  <rect width="16" height="12" x="4" y="8" rx="2" />
+                  <path d="M2 14h2" />
+                  <path d="M20 14h2" />
+                </svg>
+                {/* Left Eye */}
+                <motion.div 
+                  className="absolute bg-primary-foreground rounded-full shadow-[0_0_5px_white]"
+                  style={{ 
+                    width: '5px', 
+                    height: '6px',
+                    top: '52%',
+                    left: '32%',
+                  }}
+                  animate={{ 
+                    scaleY: [1, 0, 1, 1, 1],
+                    x: [0, 0, 0, -3, 3, 0]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    times: [0, 0.1, 0.2, 0.5, 1],
+                    ease: "easeInOut"
+                  }}
+                />
+                {/* Right Eye */}
+                <motion.div 
+                  className="absolute bg-primary-foreground rounded-full shadow-[0_0_5px_white]"
+                  style={{ 
+                    width: '5px', 
+                    height: '6px',
+                    top: '52%',
+                    left: '53%',
+                  }}
+                  animate={{ 
+                    scaleY: [1, 0, 1, 1, 1],
+                    x: [0, 0, 0, -3, 3, 0]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    times: [0, 0.1, 0.2, 0.5, 1],
+                    ease: "easeInOut"
+                  }}
+                />
+              </div>
             </button>
           </motion.div>
         )}
@@ -89,7 +159,7 @@ export default function Chatbot() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-6 right-6 z-50 w-80 sm:w-96 glass-card neon-border rounded-xl flex flex-col overflow-hidden shadow-2xl"
+            className="fixed bottom-6 right-6 z-50 w-80 sm:w-96 glass-card neon-border rounded-xl flex flex-col overflow-hidden shadow-2xl max-h-[min(600px,calc(100vh-100px))]"
           >
             {/* Header */}
             <div className="bg-secondary/10 border-b border-secondary/20 p-4 flex items-center justify-between">
@@ -111,7 +181,11 @@ export default function Chatbot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 h-80 p-4 overflow-y-auto flex flex-col gap-4 scrollbar-thin" ref={scrollRef}>
+            <div 
+              className="flex-1 p-4 overflow-y-auto flex flex-col gap-4 scrollbar-thin scroll-smooth overscroll-contain touch-pan-y" 
+              ref={scrollRef}
+              style={{ WebkitOverflowScrolling: 'touch' }}
+            >
               {messages.map((msg) => (
                 <motion.div
                   key={msg.id}

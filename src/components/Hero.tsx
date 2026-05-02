@@ -55,12 +55,12 @@ const Hero = () => {
           <div className="flex items-center justify-center gap-3 mb-6">
             <Shield className="w-8 h-8 text-primary" />
             <span className="font-mono text-sm text-muted-foreground tracking-widest uppercase">
-              Secure Portfolio
+              Cyber Security Portfolio
             </span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold neon-text mb-4 leading-tight">
-            Cyber Security
+            Malay Deshaval
             <br />
             Portfolio
           </h1>

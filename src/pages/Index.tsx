@@ -11,6 +11,7 @@ import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Chatbot from "@/components/Chatbot";
+import CustomCursor from "@/components/CustomCursor";
 
 const Index = () => {
   const [booted, setBooted] = useState(false);
@@ -23,6 +24,7 @@ const Index = () => {
 
       {booted && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
+          <CustomCursor />
           <MatrixRain />
           <Navbar />
           <main className="relative z-10">

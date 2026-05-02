@@ -9,6 +9,7 @@ interface Project {
   features: string[];
   tech: string[];
   concepts: string[];
+  github: string;
 }
 
 const projects: Project[] = [
@@ -19,6 +20,7 @@ const projects: Project[] = [
     features: ["Real-time packet capture", "Threat detection & alerting", "Dashboard visualization", "Log management"],
     tech: ["Python", "FastAPI", "React", "WebSockets"],
     concepts: ["Network Security", "Intrusion Detection", "Packet Analysis"],
+    github: "https://github.com/MalayDeshaval/Real-Time-Network-Intrusion-Detection-System",
   },
   {
     title: "Web Penetration Testing Website",
@@ -27,6 +29,7 @@ const projects: Project[] = [
     features: ["Website URL scanner", "Vulnerability detection", "Security risk scoring", "Basic penetration testing automation"],
     tech: ["Python", "Flask", "Nmap", "OWASP ZAP"],
     concepts: ["OWASP Top 10", "CVE Analysis", "Risk Assessment"],
+    github: "https://github.com/MalayDeshaval/Web-penetration-website",
   },
   {
     title: "AI Powered Web Penetration Testing",
@@ -35,6 +38,7 @@ const projects: Project[] = [
     features: ["AI vulnerability analysis", "Automated web scanning", "Security recommendations", "Threat intelligence integration"],
     tech: ["Python", "TensorFlow", "React", "REST API"],
     concepts: ["Machine Learning", "Threat Modeling", "Automated Security"],
+    github: "https://github.com/MalayDeshaval/AI-powered-Web-penetration-website",
   },
   {
     title: "Password Cracking + Defense Lab",
@@ -43,6 +47,7 @@ const projects: Project[] = [
     features: ["Dictionary attack simulation", "Brute force attack simulation", "Password strength analyzer", "Security recommendations"],
     tech: ["Python", "Hashcat", "John the Ripper", "React"],
     concepts: ["Hashing Algorithms", "Salt & Pepper", "Auth Security"],
+    github: "https://github.com/MalayDeshaval/Password-crack-Defense-website",
   },
   {
     title: "URL & Email Phishing Detection",
@@ -51,6 +56,7 @@ const projects: Project[] = [
     features: ["URL risk analysis", "Email content phishing detection", "Machine learning classification", "Real-time threat warnings"],
     tech: ["Python", "Scikit-learn", "NLP", "React"],
     concepts: ["Phishing Patterns", "Social Engineering", "ML Classification"],
+    github: "https://github.com/MalayDeshaval/URL-and-Email-Phishing-attack-detection-system",
   },
 ];
 
@@ -77,22 +83,34 @@ const Projects = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 + i * 0.1, duration: 0.5 }}
-              onClick={() => setSelected(p)}
-              className="glass-card neon-border p-5 cursor-pointer group hover:border-primary/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)]"
+              className="glass-card neon-border p-5 cursor-pointer group hover:border-primary/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)] relative"
             >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
-                  <p.icon className="w-5 h-5 text-primary" />
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3" onClick={() => setSelected(p)}>
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+                    <p.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="font-display text-sm text-foreground group-hover:neon-text transition-all">{p.title}</h3>
                 </div>
-                <h3 className="font-display text-sm text-foreground group-hover:neon-text transition-all">{p.title}</h3>
+                <a 
+                  href={p.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-secondary/10 border border-secondary/20 text-secondary hover:bg-secondary/20 transition-all z-20"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Github className="w-4 h-4" />
+                </a>
               </div>
-              <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{p.description}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {p.tech.slice(0, 3).map((t) => (
-                  <span key={t} className="text-xs font-mono bg-secondary/10 text-secondary border border-secondary/20 px-2 py-0.5 rounded">
-                    {t}
-                  </span>
-                ))}
+              <div onClick={() => setSelected(p)}>
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{p.description}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {p.tech.slice(0, 3).map((t) => (
+                    <span key={t} className="text-xs font-mono bg-secondary/10 text-secondary border border-secondary/20 px-2 py-0.5 rounded">
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
@@ -160,12 +178,14 @@ const Projects = () => {
               </div>
 
               <div className="flex gap-3">
-                <button className="neon-glow-btn bg-primary text-primary-foreground px-5 py-2 rounded-lg font-display text-xs tracking-wider uppercase flex items-center gap-2">
-                  <ExternalLink className="w-3.5 h-3.5" /> Demo
-                </button>
-                <button className="neon-glow-btn-purple bg-secondary/20 text-secondary border border-secondary/40 px-5 py-2 rounded-lg font-display text-xs tracking-wider uppercase flex items-center gap-2">
-                  <Github className="w-3.5 h-3.5" /> GitHub
-                </button>
+                <a 
+                  href={selected.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full neon-glow-btn-purple bg-secondary/20 text-secondary border border-secondary/40 px-5 py-2.5 rounded-lg font-display text-xs tracking-wider uppercase flex items-center justify-center gap-2 hover:bg-secondary/30 transition-all"
+                >
+                  <Github className="w-4 h-4" /> View GitHub Repository
+                </a>
               </div>
             </motion.div>
           </motion.div>

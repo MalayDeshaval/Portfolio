@@ -11,7 +11,14 @@ const skills = [
   { name: "Threat Analysis", level: 80 },
 ];
 
-const tools = ["Nmap", "Burp Suite", "Wireshark", "Metasploit", "Nikto", "OWASP ZAP"];
+const tools = [
+  { name: "Nmap", desc: "Network discovery & security auditing" },
+  { name: "Burp Suite", desc: "Web app security testing & proxy" },
+  { name: "Wireshark", desc: "Network protocol & packet analysis" },
+  { name: "Metasploit", desc: "Advanced exploitation framework" },
+  { name: "Nikto", desc: "Web server vulnerability scanner" },
+  { name: "OWASP ZAP", desc: "Automated web security scanner" },
+];
 
 const Skills = () => {
   const ref = useRef(null);
@@ -59,17 +66,20 @@ const Skills = () => {
           {/* Tools */}
           <div>
             <h3 className="font-display text-xs tracking-widest text-secondary uppercase mb-4">Tools</h3>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {tools.map((t, i) => (
                 <motion.div
-                  key={t}
+                  key={t.name}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={inView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
-                  className="glass-card neon-border-purple p-4 flex items-center gap-3 hover:border-secondary/60 transition-all duration-300"
+                  className="glass-card neon-border-purple p-4 flex flex-col gap-2 hover:border-secondary/60 transition-all duration-300 group"
                 >
-                  <Cpu className="w-5 h-5 text-secondary shrink-0" />
-                  <span className="font-mono text-sm text-foreground">{t}</span>
+                  <div className="flex items-center gap-3">
+                    <Cpu className="w-5 h-5 text-secondary shrink-0 group-hover:neon-text-purple transition-all" />
+                    <span className="font-mono text-sm text-foreground font-semibold">{t.name}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground ml-8 leading-relaxed">{t.desc}</p>
                 </motion.div>
               ))}
             </div>
